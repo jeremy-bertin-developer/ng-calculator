@@ -39,7 +39,7 @@ export class CalculatorWrapperComponent implements OnInit {
   handleValues(value: string): void {
     this.handleNumbers(value);
     this.handleEqual(value);
-    this.heandleErase(value);
+    this.heandleEraseAndOperators(value);
   }
 
   handleNumbers(value: string): void {
@@ -71,10 +71,11 @@ export class CalculatorWrapperComponent implements OnInit {
       this.previousOperator === '/' ? this.divisionCaluclation() : null;
       // tslint:disable-next-line: no-unused-expression
       this.previousOperator === '*' ? this.multiplicationCalculation() : null;
+      this.previousOperator = '';
     }
   }
 
-  heandleErase(value: string): void {
+  heandleEraseAndOperators(value: string): void {
     if (value === 'AC') {
       this.firstCalculation = true;
       this.tempNumber = '0';
@@ -94,7 +95,6 @@ export class CalculatorWrapperComponent implements OnInit {
       this.tempNumber = '0';
       this.firstCalculation = false;
     }
-
     this.actualOperator = value;
 
     switch (this.previousOperator) {
